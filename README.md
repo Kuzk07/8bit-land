@@ -85,8 +85,7 @@ python -m http.server 8080
 │   ├── hzk12-full.woff2
 │   ├── pixel-inline.css# Fusion Pixel 12px（内联备用字形）
 │   └── *.woff2         # Fusion Pixel 分片
-├── docs/               # README 截图
-└── ppt/                # 项目介绍幻灯片（8 页，附 DSL 源文件）
+└──docs/               # README 截图
 ```
 
 ---
