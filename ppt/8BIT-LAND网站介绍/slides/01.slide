@@ -1,0 +1,72 @@
+<Slide style={{ width: 1280, height: 720, background: '#14101F', position: 'relative', overflow: 'hidden', fontFamily: 'mplus_hzk_12' }}>
+
+    {/* L1 氛围底：整页截图做高斯模糊，只留色块和光晕 */}
+    <Image
+        src='assets/bg_cover_blur.png'
+        style={{ position: 'absolute', left: 0, top: 0, width: 1280, height: 720, objectFit: 'cover' }}
+    />
+    <Box style={{ position: 'absolute', left: 0, top: 0, width: 1280, height: 720, background: 'linear-gradient(96deg, rgba(20,16,31,0.94) 0%, rgba(20,16,31,0.86) 34%, rgba(20,16,31,0.52) 62%, rgba(20,16,31,0.28) 100%)' }} />
+    <Box style={{ position: 'absolute', left: 0, bottom: 0, width: 1280, height: 240, background: 'linear-gradient(0deg, rgba(20,16,31,0.92) 0%, rgba(20,16,31,0) 100%)' }} />
+
+    {/* 右上角标记 */}
+    <Text style={{ position: 'absolute', right: 64, top: 52, fontSize: 14, lineHeight: 1.4, letterSpacing: 4, color: 'rgba(242,233,255,0.42)' }}>
+        2026 / WEB AUDIO
+    </Text>
+
+    {/* 左侧文字块 */}
+    <Box style={{ position: 'absolute', left: 64, top: 146, width: 560, height: 364, flexDirection: 'column' }}>
+        <Text style={{ fontSize: 14, lineHeight: 1.4, letterSpacing: 5, color: 'rgba(242,233,255,0.52)' }}>
+            PURE FRONT-END · ZERO DEPENDENCY
+        </Text>
+        <Text style={{ fontSize: 96, lineHeight: 1, letterSpacing: 6, color: '#F2E9FF', marginTop: 22 }}>
+            8BIT<span style={{ color: '#E79EC4' }}>★</span>LAND
+        </Text>
+        <Box style={{ width: 132, height: 8, background: 'linear-gradient(90deg, #93DCE4 0%, #E79EC4 100%)', marginTop: 26 }} />
+        <Text style={{ fontSize: 24, lineHeight: 1.5, letterSpacing: 2, color: '#93DCE4', marginTop: 22 }}>
+            一个可以随手玩的 8bit 音乐工坊
+        </Text>
+        <Text style={{ fontSize: 17, lineHeight: 1.9, color: 'rgba(242,233,255,0.58)', fontFamily: 'Microsoft YaHei', marginTop: 18 }}>
+            没有安装、没有账号、没有素材库。三个模块共用一套 Web Audio 合成引擎，把「想做一首 8bit」压缩成一次点击。
+        </Text>
+    </Box>
+
+    {/* 右侧界面卡：真实截图，硬边框 + 硬投影，不用模糊阴影 */}
+    <Box style={{ position: 'absolute', left: 672, top: 128, width: 560, height: 340, background: '#14101F', border: '2px solid rgba(242,233,255,0.20)', boxShadow: '10px 10px 0 rgba(20,16,31,0.75)' }}>
+        <Image src='assets/cover_shot.png' style={{ width: 556, height: 336, objectFit: 'cover' }} />
+        {/* 卡片底部标签条 */}
+        <Box style={{ position: 'absolute', left: 0, bottom: 0, width: 556, height: 34, background: 'rgba(20,16,31,0.88)', flexDirection: 'row', alignItems: 'center', paddingLeft: 14, gap: 10 }}>
+            <Box style={{ width: 8, height: 8, background: '#93DCE4' }} />
+            <Text style={{ fontSize: 14, lineHeight: 1.2, letterSpacing: 2, color: 'rgba(242,233,255,0.72)' }}>BEATBOX.EXE · 像素作曲机</Text>
+        </Box>
+    </Box>
+
+    {/* 底部横向分隔线 */}
+    <Box style={{ position: 'absolute', left: 64, top: 552, width: 1152, height: 2, background: 'rgba(242,233,255,0.10)' }} />
+
+    {/* 左下角三个硬数字，预告第 6 页 */}
+    <Box style={{ position: 'absolute', left: 64, top: 584, flexDirection: 'row', alignItems: 'flex-start', gap: 36 }}>
+        <Box style={{ flexDirection: 'column' }}>
+            <Text style={{ fontSize: 24, lineHeight: 1, color: '#93DCE4' }}>0</Text>
+            <Text style={{ fontSize: 14, lineHeight: 1.6, letterSpacing: 1, color: 'rgba(242,233,255,0.45)', marginTop: 10 }}>个音频文件</Text>
+        </Box>
+        <Box style={{ width: 2, height: 52, background: 'rgba(242,233,255,0.14)' }} />
+        <Box style={{ flexDirection: 'column' }}>
+            <Text style={{ fontSize: 24, lineHeight: 1, color: '#93DCE4' }}>1.9 MB</Text>
+            <Text style={{ fontSize: 14, lineHeight: 1.6, letterSpacing: 1, color: 'rgba(242,233,255,0.45)', marginTop: 10 }}>整站体积</Text>
+        </Box>
+        <Box style={{ width: 2, height: 52, background: 'rgba(242,233,255,0.14)' }} />
+        <Box style={{ flexDirection: 'column' }}>
+            <Text style={{ fontSize: 24, lineHeight: 1, color: '#93DCE4' }}>60 KB</Text>
+            <Text style={{ fontSize: 14, lineHeight: 1.6, letterSpacing: 1, color: 'rgba(242,233,255,0.45)', marginTop: 10 }}>核心脚本</Text>
+        </Box>
+    </Box>
+
+    {/* 右下角落款 */}
+    <Box style={{ position: 'absolute', right: 64, bottom: 48, flexDirection: 'row', alignItems: 'center', gap: 12 }}>
+        <Box style={{ width: 10, height: 10, background: '#E79EC4' }} />
+        <Text style={{ fontSize: 17, lineHeight: 1.5, color: 'rgba(242,233,255,0.62)', fontFamily: 'Microsoft YaHei' }}>
+            双击 index.html 就能玩，不联网、不登录、不上传
+        </Text>
+    </Box>
+
+</Slide>

@@ -1,0 +1,64 @@
+<Slide style={{ width: 1280, height: 720, background: '#14101F', position: 'relative', overflow: 'hidden', fontFamily: 'mplus_hzk_12' }}>
+
+    <Box style={{ position: 'absolute', left: 0, top: 0, width: 1280, height: 720, background: 'radial-gradient(circle at 76% 74%, rgba(231,158,196,0.09) 0%, rgba(20,16,31,0) 55%)' }} />
+
+    {/* A 区：标题块 */}
+    <Box style={{ position: 'absolute', left: 64, top: 28, flexDirection: 'row', alignItems: 'flex-end', gap: 22 }}>
+        <Text style={{ fontSize: 36, lineHeight: 1.3, letterSpacing: 2, color: '#F2E9FF' }}>两套皮肤，一套骨架</Text>
+        <Text style={{ fontSize: 24, lineHeight: 1.2, letterSpacing: 3, color: 'rgba(231,158,196,0.85)' }}>06 / DESIGN</Text>
+    </Box>
+    <Box style={{ position: 'absolute', left: 64, top: 88, width: 88, height: 6, background: '#E79EC4' }} />
+
+    {/* B 区左：糖果桌面整屏 */}
+    <Box style={{ position: 'absolute', left: 64, top: 132, width: 690, height: 455, background: '#14101F', border: '2px solid rgba(242,233,255,0.18)', boxShadow: '8px 8px 0 rgba(20,16,31,0.7)' }}>
+        <Image src='assets/ui_candy_desktop.png' style={{ width: 686, height: 451, objectFit: 'cover' }} />
+    </Box>
+
+    <Box style={{ position: 'absolute', left: 64, top: 601, width: 690, flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+        <Box style={{ width: 24, height: 2, background: 'rgba(147,220,228,0.6)' }} />
+        <Text style={{ fontSize: 14, lineHeight: 1.7, letterSpacing: 1, color: 'rgba(242,233,255,0.45)' }}>糖果桌面主题：同一套页面，只换一层 CSS 变量</Text>
+    </Box>
+
+    {/* B 区右 */}
+    <Box style={{ position: 'absolute', left: 790, top: 132, width: 362, flexDirection: 'column' }}>
+        <Text style={{ fontSize: 21, lineHeight: 1.4, color: '#93DCE4' }}>换主题只换一层变量</Text>
+        <Text style={{ width: 362, fontSize: 17, lineHeight: 1.75, color: 'rgba(242,233,255,0.58)', fontFamily: 'Microsoft YaHei', marginTop: 10 }}>
+            配色全收在 CSS 变量里，切主题只改 body 上的一个 data-theme。画布里的像素小人读同一份调色板，HTML 和 canvas 不会各走各的。
+        </Text>
+
+        <Box style={{ width: 362, height: 1, background: 'rgba(242,233,255,0.12)', marginTop: 22 }} />
+
+        <Text style={{ fontSize: 21, lineHeight: 1.4, color: '#93DCE4', marginTop: 22 }}>字号只走 12 的倍数</Text>
+
+        <Box style={{ flexDirection: 'row', alignItems: 'flex-end', gap: 14, marginTop: 16 }}>
+            <Text style={{ width: 30, fontSize: 14, lineHeight: 1.6, color: 'rgba(242,233,255,0.4)' }}>12</Text>
+            <Text style={{ fontSize: 12, lineHeight: 1, color: 'rgba(242,233,255,0.8)' }}>8BIT LAND</Text>
+        </Box>
+        <Box style={{ flexDirection: 'row', alignItems: 'flex-end', gap: 14, marginTop: 12 }}>
+            <Text style={{ width: 30, fontSize: 14, lineHeight: 1.6, color: 'rgba(242,233,255,0.4)' }}>24</Text>
+            <Text style={{ fontSize: 24, lineHeight: 1, color: 'rgba(242,233,255,0.8)' }}>8BIT LAND</Text>
+        </Box>
+        <Box style={{ flexDirection: 'row', alignItems: 'flex-end', gap: 14, marginTop: 12 }}>
+            <Text style={{ width: 30, fontSize: 14, lineHeight: 1.6, color: 'rgba(242,233,255,0.4)' }}>36</Text>
+            <Text style={{ fontSize: 36, lineHeight: 1, color: 'rgba(242,233,255,0.8)' }}>8BIT</Text>
+        </Box>
+        <Box style={{ flexDirection: 'row', alignItems: 'flex-end', gap: 14, marginTop: 12 }}>
+            <Text style={{ width: 30, fontSize: 14, lineHeight: 1.6, color: 'rgba(242,233,255,0.4)' }}>48</Text>
+            <Text style={{ fontSize: 48, lineHeight: 1, color: '#F2E9FF' }}>8BIT</Text>
+        </Box>
+
+        <Text style={{ width: 362, fontSize: 17, lineHeight: 1.75, color: 'rgba(242,233,255,0.58)', fontFamily: 'Microsoft YaHei', marginTop: 16 }}>
+            点阵字的 em 框就是 12 像素，非整数倍缩放会被插值，边缘立刻发灰。
+        </Text>
+    </Box>
+
+    {/* C 区：页脚 */}
+    <Box style={{ position: 'absolute', left: 64, top: 668, width: 1152, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+        <Box style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+            <Box style={{ width: 8, height: 8, background: '#E79EC4' }} />
+            <Text style={{ fontSize: 14, lineHeight: 1.4, letterSpacing: 2, color: 'rgba(242,233,255,0.38)' }}>8BIT LAND</Text>
+        </Box>
+        <Text style={{ fontSize: 14, lineHeight: 1.4, letterSpacing: 2, color: 'rgba(242,233,255,0.38)' }}>07 / 08</Text>
+    </Box>
+
+</Slide>

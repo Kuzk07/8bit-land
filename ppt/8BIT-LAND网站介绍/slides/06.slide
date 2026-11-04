@@ -1,0 +1,107 @@
+<Slide style={{ width: 1280, height: 720, background: '#14101F', position: 'relative', overflow: 'hidden', fontFamily: 'mplus_hzk_12' }}>
+
+    <Box style={{ position: 'absolute', left: 0, top: 0, width: 1280, height: 720, background: 'radial-gradient(circle at 50% 22%, rgba(231,158,196,0.10) 0%, rgba(20,16,31,0) 58%)' }} />
+
+    {/* A 区：标题块 */}
+    <Box style={{ position: 'absolute', left: 64, top: 28, flexDirection: 'row', alignItems: 'flex-end', gap: 22 }}>
+        <Text style={{ fontSize: 36, lineHeight: 1.3, letterSpacing: 2, color: '#F2E9FF' }}>把门槛清零</Text>
+        <Text style={{ fontSize: 24, lineHeight: 1.2, letterSpacing: 3, color: 'rgba(231,158,196,0.85)' }}>05 / BIG PICTURE</Text>
+    </Box>
+    <Box style={{ position: 'absolute', left: 64, top: 88, width: 88, height: 6, background: '#E79EC4' }} />
+
+    {/* 巨型数字三连 */}
+    <Box style={{ position: 'absolute', left: 64, top: 140, width: 1152, flexDirection: 'row', gap: 24 }}>
+
+        <Box style={{ width: 368, flexDirection: 'column' }}>
+            <Box style={{ flexDirection: 'row', alignItems: 'flex-end', gap: 10 }}>
+                <Text style={{ fontSize: 120, lineHeight: 1, letterSpacing: 2, color: '#E79EC4' }}>零</Text>
+                <Text style={{ fontSize: 36, lineHeight: 1.1, color: '#F2E9FF' }}>插件</Text>
+            </Box>
+            <Text style={{ width: 368, fontSize: 17, lineHeight: 1.75, color: 'rgba(242,233,255,0.58)', fontFamily: 'Microsoft YaHei', marginTop: 14 }}>
+                不用装 VST、不用挂音源库，浏览器自带音频引擎就够用。
+            </Text>
+        </Box>
+
+        <Box style={{ width: 368, flexDirection: 'column' }}>
+            <Box style={{ flexDirection: 'row', alignItems: 'flex-end', gap: 10 }}>
+                <Text style={{ fontSize: 120, lineHeight: 1, letterSpacing: 2, color: '#E79EC4' }}>零</Text>
+                <Text style={{ fontSize: 36, lineHeight: 1.1, color: '#F2E9FF' }}>上传</Text>
+            </Box>
+            <Text style={{ width: 368, fontSize: 17, lineHeight: 1.75, color: 'rgba(242,233,255,0.58)', fontFamily: 'Microsoft YaHei', marginTop: 14 }}>
+                音频只在本地解码，一个字节都不发到服务器，断网也能继续用。
+            </Text>
+        </Box>
+
+        <Box style={{ width: 368, flexDirection: 'column' }}>
+            <Box style={{ flexDirection: 'row', alignItems: 'flex-end', gap: 10 }}>
+                <Text style={{ fontSize: 120, lineHeight: 1, letterSpacing: 2, color: '#E79EC4' }}>零</Text>
+                <Text style={{ fontSize: 36, lineHeight: 1.1, color: '#F2E9FF' }}>注册</Text>
+            </Box>
+            <Text style={{ width: 368, fontSize: 17, lineHeight: 1.75, color: 'rgba(242,233,255,0.58)', fontFamily: 'Microsoft YaHei', marginTop: 14 }}>
+                没有账号、没有试用期、没有水印，打开网页就是全部功能。
+            </Text>
+        </Box>
+
+    </Box>
+
+    {/* 分隔线 */}
+    <Box style={{ position: 'absolute', left: 64, top: 404, width: 1152, height: 1, background: 'rgba(242,233,255,0.12)' }} />
+
+    {/* 转换链 */}
+    <Box style={{ position: 'absolute', left: 64, top: 424, flexDirection: 'row', alignItems: 'center', gap: 14 }}>
+        <Box style={{ width: 24, height: 2, background: 'rgba(147,220,228,0.6)' }} />
+        <Text style={{ fontSize: 14, lineHeight: 1.7, letterSpacing: 2, color: 'rgba(147,220,228,0.75)' }}>一首歌进到这里之后</Text>
+    </Box>
+
+    <Box style={{ position: 'absolute', left: 64, top: 462, width: 1152, flexDirection: 'row', alignItems: 'flex-start', gap: 14 }}>
+
+        <Box style={{ width: 186, flexDirection: 'column' }}>
+            <Text style={{ fontSize: 21, lineHeight: 1.3, color: '#F2E9FF', fontFamily: 'Microsoft YaHei' }}>解码</Text>
+            <Text style={{ width: 186, fontSize: 14, lineHeight: 1.7, color: 'rgba(242,233,255,0.5)', fontFamily: 'Microsoft YaHei', marginTop: 6 }}>Web Audio 解出 PCM 采样</Text>
+        </Box>
+
+        <Text style={{ fontSize: 21, lineHeight: 1.3, color: 'rgba(147,220,228,0.7)' }}>→</Text>
+
+        <Box style={{ width: 186, flexDirection: 'column' }}>
+            <Text style={{ fontSize: 21, lineHeight: 1.3, color: '#F2E9FF', fontFamily: 'Microsoft YaHei' }}>混单声道</Text>
+            <Text style={{ width: 186, fontSize: 14, lineHeight: 1.7, color: 'rgba(242,233,255,0.5)', fontFamily: 'Microsoft YaHei', marginTop: 6 }}>左右声道相加取平均</Text>
+        </Box>
+
+        <Text style={{ fontSize: 21, lineHeight: 1.3, color: 'rgba(147,220,228,0.7)' }}>→</Text>
+
+        <Box style={{ width: 186, flexDirection: 'column' }}>
+            <Text style={{ fontSize: 21, lineHeight: 1.3, color: '#F2E9FF', fontFamily: 'Microsoft YaHei' }}>抗混叠低通</Text>
+            <Text style={{ width: 186, fontSize: 14, lineHeight: 1.7, color: 'rgba(242,233,255,0.5)', fontFamily: 'Microsoft YaHei', marginTop: 6 }}>先切掉高频，避免折返噪声</Text>
+        </Box>
+
+        <Text style={{ fontSize: 21, lineHeight: 1.3, color: 'rgba(147,220,228,0.7)' }}>→</Text>
+
+        <Box style={{ width: 186, flexDirection: 'column' }}>
+            <Text style={{ fontSize: 21, lineHeight: 1.3, color: '#F2E9FF', fontFamily: 'Microsoft YaHei' }}>降采样 + 量化</Text>
+            <Text style={{ width: 186, fontSize: 14, lineHeight: 1.7, color: 'rgba(242,233,255,0.5)', fontFamily: 'Microsoft YaHei', marginTop: 6 }}>压到 11,000 Hz、4 bit</Text>
+        </Box>
+
+        <Text style={{ fontSize: 21, lineHeight: 1.3, color: 'rgba(147,220,228,0.7)' }}>→</Text>
+
+        <Box style={{ width: 186, flexDirection: 'column' }}>
+            <Text style={{ fontSize: 21, lineHeight: 1.3, color: '#F2E9FF', fontFamily: 'Microsoft YaHei' }}>编码 WAV</Text>
+            <Text style={{ width: 186, fontSize: 14, lineHeight: 1.7, color: 'rgba(242,233,255,0.5)', fontFamily: 'Microsoft YaHei', marginTop: 6 }}>手写文件头，浏览器直接下载</Text>
+        </Box>
+
+    </Box>
+
+    {/* 收尾句 */}
+    <Text style={{ position: 'absolute', left: 64, top: 576, width: 1152, fontSize: 21, lineHeight: 1.5, color: 'rgba(242,233,255,0.78)', fontFamily: 'Microsoft YaHei' }}>
+        中间那步「芯片过饱和」是可选项——它把音量推到失真，颗粒感和噪声都是故意留的。
+    </Text>
+
+    {/* C 区：页脚 */}
+    <Box style={{ position: 'absolute', left: 64, top: 668, width: 1152, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+        <Box style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+            <Box style={{ width: 8, height: 8, background: '#E79EC4' }} />
+            <Text style={{ fontSize: 14, lineHeight: 1.4, letterSpacing: 2, color: 'rgba(242,233,255,0.38)' }}>8BIT LAND</Text>
+        </Box>
+        <Text style={{ fontSize: 14, lineHeight: 1.4, letterSpacing: 2, color: 'rgba(242,233,255,0.38)' }}>06 / 08</Text>
+    </Box>
+
+</Slide>

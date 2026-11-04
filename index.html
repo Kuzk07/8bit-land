@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="vapor">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>8BIT☆LAND</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Crect width='8' height='8' fill='%23140f22'/%3E%3Crect x='3' y='0' width='2' height='8' fill='%23e79ec4'/%3E%3Crect x='0' y='3' width='8' height='2' fill='%2393dce4'/%3E%3C/svg%3E" />
+<script>
+  try {
+    var t = localStorage.getItem('8bit-land-theme');
+    if (t === 'xp' || t === 'handheld') t = 'vapor';
+    if (t === 'vapor' || t === 'win98') document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+</script>
+<!-- 像素字体本地化：中文用系统里那套 M+ HZK12 点阵（已内联成 base64），英文用 Fusion Pixel -->
+<link rel="stylesheet" href="fonts/pixel/hzk12.css" />
+<link rel="stylesheet" href="fonts/pixel/pixel-inline.css" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ======= 背景层 ======= -->
+<div class="bg" aria-hidden="true">
+  <div class="sun"></div>
+  <div class="haze"></div>
+  <div class="grid-floor"></div>
+  <div class="stars" id="starField"></div>
+  <div class="pxgrid"></div>
+</div>
+
+<!-- ======= 桌面图标（仅糖果主题显示） ======= -->
+<div class="desk-icons" aria-hidden="true">
+  <div class="desk-icon">
+    <svg viewBox="0 0 16 16" shape-rendering="crispEdges">
+      <rect x="1" y="2" width="14" height="10" fill="#efedf9" stroke="#1b1730" />
+      <rect x="2" y="3" width="12" height="8" fill="#7fa8f0" />
+      <rect x="3" y="4" width="4" height="2" fill="#cfe0ff" />
+      <rect x="6" y="12" width="4" height="2" fill="#d9d5ee" stroke="#1b1730" />
+      <rect x="3" y="14" width="10" height="1" fill="#1b1730" />
+    </svg>
+    <span>我的电脑</span>
+  </div>
+  <div class="desk-icon">
+    <svg viewBox="0 0 16 16" shape-rendering="crispEdges">
+      <rect x="2" y="1" width="12" height="14" fill="#ffffff" stroke="#1b1730" />
+      <rect x="4" y="4" width="8" height="1" fill="#e0699f" />
+      <rect x="4" y="6" width="8" height="1" fill="#cfcbe6" />
+      <rect x="4" y="8" width="6" height="1" fill="#cfcbe6" />
+      <rect x="4" y="10" width="7" height="1" fill="#cfcbe6" />
+      <path d="M10 1 L14 5 L10 5 Z" fill="#ffd9ec" stroke="#1b1730" />
+    </svg>
+    <span>memo.txt</span>
+  </div>
+  <div class="desk-icon">
+    <svg viewBox="0 0 16 16" shape-rendering="crispEdges">
+      <rect x="1" y="3" width="6" height="2" fill="#f7a9d3" stroke="#1b1730" />
+      <rect x="1" y="4" width="14" height="10" fill="#ffd9ec" stroke="#1b1730" />
+      <rect x="2" y="6" width="12" height="1" fill="#f7a9d3" />
+      <rect x="2" y="12" width="12" height="1" fill="#f7a9d3" />
+    </svg>
+    <span>loops</span>
+  </div>
+  <div class="desk-icon">
+    <svg viewBox="0 0 16 16" shape-rendering="crispEdges">
+      <rect x="1" y="2" width="14" height="12" fill="#ffffff" stroke="#1b1730" />
+      <rect x="2" y="3" width="12" height="10" fill="#bfe3f2" />
+      <path d="M2 13 L6 7 L9 13 Z" fill="#7fc9a8" />
+      <path d="M7 13 L11 8 L14 13 Z" fill="#4fae8f" />
+      <rect x="11" y="4" width="3" height="3" fill="#f7d38a" />
+    </svg>
+    <span>cover.jpg</span>
+  </div>
+</div>
+
+<!-- ======= 桌面便签（仅糖果主题显示） ======= -->
+<div class="desk-note" aria-hidden="true">
+  <header>Note</header>
+  <p>Today is a great day!<br />今天也来做点<br />好听的歌吧 ♪</p>
+</div>
+
+<!-- ======= 极轻的屏幕质感 ======= -->
+<div class="crt" aria-hidden="true">
+  <div class="scan"></div>
+  <div class="dither"></div>
+  <div class="vig"></div>
+</div>
+
+<!-- ======= 粒子画布 ======= -->
+<canvas id="fx" aria-hidden="true"></canvas>
+
+<!-- ======= 顶栏 ======= -->
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-main">
+      <span>8</span><span>B</span><span>I</span><span>T</span><b class="star">★</b><span>L</span><span>A</span><span>N</span><span>D</span>
+    </div>
+    <div class="brand-sub">MUSIC TOYBOX</div>
+  </div>
+
+  <nav class="tabs" id="tabs">
+    <button class="tab is-active" data-panel="3"><i>01</i><span>随心和声</span></button>
+    <button class="tab" data-panel="2"><i>02</i><span>像素作曲机</span></button>
+    <button class="tab" data-panel="1"><i>03</i><span>8BIT 转换器</span></button>
+  </nav>
+
+  <div class="theme-switch" id="themeSwitch" role="group" aria-label="界面主题">
+    <span class="theme-cap">THEME</span>
+    <button type="button" class="theme-opt is-on" data-theme-set="vapor" title="像素蒸汽波">像素</button>
+    <button type="button" class="theme-opt" data-theme-set="win98" title="糖果复古桌面">糖果</button>
+  </div>
+
+  <div class="sysinfo">
+    <span class="led"></span>
+    <span id="clock">--:--:--</span>
+  </div>
+</header>
+
+<main>
+
+  <!-- ==================== 随心和声（原模块三，放在最前） ==================== -->
+  <section class="panel is-active" id="panel-3">
+    <div class="win">
+      <div class="win-bar">
+        <span class="win-title"><b>◆</b> LUCKY-KEYS.EXE <em>— 零基础随心和声</em></span>
+        <span class="win-btns"><b></b><b></b><b></b></span>
+      </div>
+
+      <div class="win-body lucky">
+        <div class="lucky-mascot">
+          <canvas id="mascot" width="16" height="16"></canvas>
+          <div class="mascot-shadow"></div>
+        </div>
+
+        <h2 class="lucky-title">随便按，就是一段旋律 <span class="wave">♪</span></h2>
+        <p class="lucky-sub">每个音都落在和弦里，还会顺着一条写好的旋律线走——<br />所以你怎么乱按都不会难听。</p>
+
+        <div class="lucky-controls">
+          <label class="selbox">
+            <span class="transport-label">调式</span>
+            <select id="scale">
+              <option value="major">大调‧明亮</option>
+              <option value="minor">小调‧温柔</option>
+              <option value="dorian">多利亚‧慵懒</option>
+              <option value="hira">都节‧和风</option>
+            </select>
+          </label>
+
+          <label class="chk inline"><input type="checkbox" id="padLoop" checked /> 背景和声垫</label>
+
+          <button class="btn" id="resetLucky">重新来一段</button>
+        </div>
+
+        <div class="lucky-stats">
+          <div class="stat"><i>当前和弦</i><b id="chordName">C</b></div>
+          <div class="stat"><i>小节</i><b id="barPos">1 / 8</b></div>
+          <div class="stat"><i>调式</i><b id="scaleName">大调‧明亮</b></div>
+          <div class="stat"><i>已敲击</i><b id="hitCount">0</b></div>
+        </div>
+
+        <div class="chord-strip" id="chordStrip" title="点一下可以跳到那个小节"></div>
+
+        <div class="lucky-hint" id="luckyHint">点屏幕，或者随便敲键盘</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 像素作曲机 ==================== -->
+  <section class="panel" id="panel-2">
+    <div class="win">
+      <div class="win-bar">
+        <span class="win-title"><b>◆</b> BEATBOX.EXE <em>— 像素作曲机</em></span>
+        <span class="win-btns"><b></b><b></b><b></b></span>
+      </div>
+
+      <div class="win-body">
+        <div class="transport">
+          <button class="btn play" id="playBtn"><span id="playIcon" aria-hidden="true"></span><em id="playTxt">播放</em></button>
+
+          <div class="bpm-box">
+            <span class="transport-label">BPM</span>
+            <input type="range" id="bpm" min="70" max="180" step="1" value="120" />
+            <b id="bpmVal">120</b>
+          </div>
+
+          <label class="selbox">
+            <span class="transport-label">音色</span>
+            <select id="voice">
+              <option value="square">方波 SQUARE</option>
+              <option value="pulse">窄脉冲 PULSE</option>
+              <option value="triangle">三角 TRIANGLE</option>
+              <option value="saw">锯齿 SAW</option>
+            </select>
+          </label>
+
+          <label class="chk inline"><input type="checkbox" id="drum" checked /> 鼓点</label>
+
+          <div class="transport-right">
+            <button class="btn" id="clearBtn">清空</button>
+            <button class="btn" id="exportSong">存成 WAV</button>
+          </div>
+        </div>
+
+        <div class="roll-wrap">
+          <canvas id="roll"></canvas>
+          <div class="roll-tip" id="rollTip">点播放键，再按住键盘字母，音符就会自动写进格子里 ♪</div>
+        </div>
+
+        <div class="piano" id="piano"></div>
+
+        <p class="hint">
+          <b>A S D F G H J K L ;</b> 白键‧<b>W E T Y U O P</b> 黑键 ‧
+          <b>点击格子</b> 可以手动加/删音符‧停止播放时可以自由弹奏（不写谱）
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 8BIT 转换器 ==================== -->
+  <section class="panel" id="panel-1">
+    <div class="win">
+      <div class="win-bar">
+        <span class="win-title"><b>◆</b> CONVERTER.EXE <em>— 8BIT 音乐转换器</em></span>
+        <span class="win-btns"><b></b><b></b><b></b></span>
+      </div>
+
+      <div class="win-body grid2">
+        <div>
+          <label class="drop" id="drop">
+            <input type="file" id="fileInput" accept="audio/*,.mp3,.wav,.ogg,.m4a,.flac" hidden />
+            <span class="drop-icon">♪</span>
+            <span class="drop-main">把音乐拖到这里</span>
+            <span class="drop-sub">或 <u>点击选择文件</u>‧MP3 / WAV / OGG / M4A</span>
+          </label>
+
+          <div class="filecard" id="fileCard" hidden>
+            <div class="filecard-name" id="fileName">—</div>
+            <div class="filecard-meta" id="fileMeta">—</div>
+          </div>
+
+          <div class="presets">
+            <span class="presets-label">一键预设</span>
+            <button class="chip" data-preset="soft">轻 Lo-Fi</button>
+            <button class="chip is-on" data-preset="normal">标准 8BIT</button>
+            <button class="chip" data-preset="hard">硬核芯片</button>
+          </div>
+
+          <div class="ctrls">
+            <div class="ctrl">
+              <div class="ctrl-head"><span>位深 BIT DEPTH</span><b id="bitsVal">4 bit</b></div>
+              <input type="range" id="bits" min="2" max="8" step="1" value="4" />
+              <div class="ctrl-hint">越低越有"电子垃圾"味</div>
+            </div>
+            <div class="ctrl">
+              <div class="ctrl-head"><span>采样率 SAMPLE RATE</span><b id="rateVal">11025 Hz</b></div>
+              <input type="range" id="rate" min="4000" max="44100" step="500" value="11025" />
+              <div class="ctrl-hint">越低越复古，11025 是经典值</div>
+            </div>
+            <div class="ctrl">
+              <div class="ctrl-head"><span>音量 GAIN</span><b id="gainVal">100%</b></div>
+              <input type="range" id="gain" min="50" max="200" step="5" value="100" />
+              <div class="ctrl-hint">转换后声音会变小，可以补回来</div>
+            </div>
+            <label class="chk"><input type="checkbox" id="drive" checked /> 芯片过载 CHIP DRIVE（更有冲击力）</label>
+          </div>
+        </div>
+
+        <div class="rightcol">
+          <div class="wave-box">
+            <div class="wave-label"><span>ORIGINAL</span><i>原始波形</i></div>
+            <canvas id="waveOrig" class="wave" height="90"></canvas>
+            <div class="wave-label alt"><span>8BIT</span><i>芯片波形</i></div>
+            <canvas id="wave8" class="wave" height="90"></canvas>
+            <div class="wave-empty" id="waveEmpty">等待导入音频…</div>
+          </div>
+
+          <button class="btn big primary" id="convertBtn" disabled>→ 开始转换</button>
+
+          <div class="progress" id="progress" hidden>
+            <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+            <div class="progress-txt" id="progressTxt">0%</div>
+          </div>
+
+          <p class="tip" id="convTip">转换是 100% 本地处理的，你的音频不会上传到任何服务器。</p>
+        </div>
+      </div>
+
+      <div class="win-body preview" id="previewBox" hidden>
+        <div class="preview-head">
+          <span class="blink">◆</span> 试听确认 <em>— 满意了再导出，不满意可以调参数重来</em>
+        </div>
+        <audio id="audioPreview" controls preload="auto"></audio>
+        <div class="preview-meta" id="previewMeta">—</div>
+        <div class="preview-actions">
+          <button class="btn" id="reConvert">换参数再转一次</button>
+          <button class="btn primary" id="exportBtn">↓ 确认并导出 WAV</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <span class="tb-start" aria-hidden="true"><i></i>开始</span>
+  <span class="tb-quick" aria-hidden="true"><i></i><i></i><i></i></span>
+  <span class="footer-text">© 8BIT☆LAND‧所有声音由浏览器实时合成，无需联网</span>
+  <span class="tb-search" aria-hidden="true">Search…<b>×</b></span>
+  <span class="tb-clock" id="tbClock" aria-hidden="true"></span>
+</footer>
+
+<!-- ======= 启动页 ======= -->
+<div class="boot" id="boot">
+  <div class="boot-frame">
+    <div class="boot-logo"><span>8</span><span>B</span><span>I</span><span>T</span><b>★</b><span>L</span><span>A</span><span>N</span><span>D</span></div>
+    <div class="boot-sub">一个可以随手玩的音乐盒子</div>
+    <div class="boot-load"><i></i></div>
+    <div class="boot-tip">点击任意位置开始</div>
+    <div class="boot-note">第一次点击会启动音频引擎</div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

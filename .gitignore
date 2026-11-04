@@ -1,0 +1,29 @@
+# 抓图 / 调试残留
+_cap_*.html
+_cap_*.png
+_crop_*.png
+_rect*.html
+
+# 备份文件
+*.bak
+*.bak[0-9]*
+*.orig
+*.rej
+
+# 编辑器与系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# WorkBuddy 本地记忆
+.workbuddy/
+
+# PPT 工作目录的中间产物
+ppt/**/_preview/
+ppt/**/_tmp/
+ppt/**/.slidep/
+ppt/**/.cache/
+ppt/**/assets/
+ppt/**/*.json
